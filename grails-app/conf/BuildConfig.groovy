@@ -6,6 +6,7 @@ grails.project.work.dir = "target/work"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
+//NEW CHANGES FOR GIT TAG JENKINS
 
 grails.project.fork = [
     // configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required
@@ -35,21 +36,24 @@ grails.project.dependency.resolution = {
     repositories {
         inherits true // Whether to inherit repository definitions from plugins
 
-        grailsPlugins()
-        grailsHome()
-        mavenLocal()
-        grailsCentral()
-        mavenCentral()
-        // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
-        //mavenRepo "http://repository.codehaus.org"
-        //mavenRepo "http://download.java.net/maven/2/"
-        //mavenRepo "http://repository.jboss.com/maven2/"
+grailsPlugins()
+grailsHome()
+mavenLocal()
+mavenCentral()
+
+mavenRepo "http://repo.grails.org/grails/plugins/"
+mavenRepo "https://repo.grails.org/grails/core/"
+mavenRepo "http://nexus.bsdn.org/content/repositories/public/"
+mavenRepo "https://repo.maven.apache.org/maven2/"
+mavenRepo "http://repository.jboss.com/maven2/"
+mavenRepo "https://maven.alfresco.com/nexus/content/groups/public/"
     }
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
         // runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
+        compile "org.mongodb:mongo-java-driver:3.10.0"
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
     }
 
@@ -67,6 +71,8 @@ grails.project.dependency.resolution = {
         runtime ":hibernate4:4.3.10" // or ":hibernate:3.6.10.18"
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
+
+        compile ':mongodb:6.1.7'
 
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.9.0"
